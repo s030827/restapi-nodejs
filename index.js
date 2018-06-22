@@ -5,7 +5,30 @@ let server = http.createServer((req, res)=>{
   console.log('Url:', req.url);
   console.log('Method:', req.method);
 
-  res.end('OK');
+  switch (req.url) {
+
+    case '/':
+
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/html');
+    res.end('<h1>Hi!</h1>')
+
+    break;
+
+    case '/users':
+
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({
+      users:[{
+        name:'Marcus',
+        email: 'marcus@gmail.com',
+        id: 1
+      }]
+    }));
+
+    break;
+  }
 
 });
 
