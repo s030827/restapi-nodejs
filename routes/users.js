@@ -12,6 +12,10 @@ module.exports = (app)=>{
     });
   });
 
+  app.post('/users', (req, res)=>{
+    res.json(req.body);
+  });
+
   app.get('/users/admin', (req, res)=>{
 
     res.statusCode = 200;
