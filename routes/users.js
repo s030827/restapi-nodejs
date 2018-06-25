@@ -9,6 +9,7 @@ let db = new NeDB({
 module.exports = (app)=>{
 
   let route = app.route('/users');
+  let routeId = app.route('/users/:id');
 
   route.get((req, res)=>{
 
@@ -22,6 +23,18 @@ module.exports = (app)=>{
               users
             });
           } 
+      });
+  });
+
+  routeId.get((req, res)=>{
+    
+      db.findOne({_id:req.params.id}).exec((err, user)=>{
+
+          if (err) {
+            app.utils.error.send(err, req, res);
+          } else {
+            res.status(200).json(user);
+          }
       });
   });
 
